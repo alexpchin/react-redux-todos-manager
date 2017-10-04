@@ -1,13 +1,13 @@
 {
-  "name": "SC-ReactJSTest",
+  "name": "react-redux-todos-manager",
   "version": "1.0.0",
   "main": "index.js",
   "repository": {
-    "url": "https://github.com/nksc/NodeJS-ReactJSTest/",
+    "url": "https://github.com/mohamed-ismat/react-redux-todos-manager/",
     "type": "git"
   },
-  "author": "Guto Sanches <gutosanchesr@gmail.com>",
-  "license": "UNLICENSED",
+  "author": "Mohamed Ismat <mohamedismat91@gmail.com>",
+  "license": "MIT",
   "engines": {
     "node": "^6.4.0"
   },
@@ -34,6 +34,7 @@
     "lodash": "^4.17.2",
     "node-uuid": "^1.4.7",
     "normalizr": "^2.2.1",
+    "prop-types": "^15.6.0",
     "react": "^15.3.0",
     "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.3.0",
@@ -49,5 +50,8 @@
     "redux-storage-engine-localstorage": "^1.1.2",
     "reselect": "^2.5.4",
     "serialize-javascript": "^1.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1"
   }
 }

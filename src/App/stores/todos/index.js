@@ -1,3 +1,5 @@
-import createResource from 'App/stores/resources'
+import createResource from '../resources';
 
-export default createResource('todos')
+const todos = createResource('todos');
+
+export default todos;

@@ -21,9 +21,11 @@ module.exports = (baseConfig, options) => {
   // Enable `cheap-eval-source-map` on development for a little bit faster builds.
   // Unfortunately the source map generated aren't really good, so comment this lines
   // if faster builds are not that important to you as source maps are.
-  if (options.environment === 'development') {
-    config.devtool = 'cheap-eval-source-map'
-  }
+
+// Ismat: commented this for debugging
+  // if (options.environment === 'development') {
+  //   config.devtool = 'cheap-eval-source-map'
+  // }
 
   // Set webpack-hot-middleware noInfo to true to disable informational console logging
   // and remove reload=true to disable auto-reload of the page when webpack gets stuck

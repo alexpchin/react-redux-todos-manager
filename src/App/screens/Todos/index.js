@@ -1,37 +1,49 @@
-import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'; import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from 'App/stores/resources/actions';
+import { selectListName } from 'App/stores/lists';
+import AddTodo from './containers/AddTodo';
+import TodoList from './components/TodoList';
+import Footer from './components/Footer';
+import VisibleTodoList from './containers/VisibleTodoList';
 
-import * as actions from 'App/stores/resources/actions'
-import { getEntities } from 'App/stores/resources'
+const Todos = ({ todos, addTodo, listName, params: { listID } }) => (
+  <section className="pa3 pa5-ns">
+    <h1 className="f3 bold center mw6 tc ttu">{listName}</h1>
 
-import AddTodo from './components/AddTodo'
-import TodoList from './components/TodoList'
+    <AddTodo
+      onSubmit={({ todo }, _, { reset }) => {
+        addTodo(todo, listID);
+        reset();
+      }}
+    />
 
-const Todos = ({ todos, addTodo, toggleTodo }) => {
-  return (
-    <section className='pa3 pa5-ns'>
-      <AddTodo onSubmit={({todo}, _, {reset}) => {
-        addTodo(todo)
-        reset()
-      }} />
+    <h1 className="f4 bold center mw6">Todos</h1>
 
-      <h1 className='f4 bold center mw6'>All Todos</h1>
+    <VisibleTodoList />
 
-      <TodoList {...{ todos, toggleTodo }} />
-    </section>
-  )
-}
+    <Footer />
+  </section>
+);
 
 Todos.propTypes = {
-  todos: PropTypes.array
-}
+  todos: PropTypes.array,
+  addTodo: PropTypes.func,
+  listName: PropTypes.string,
+  params: PropTypes.any,
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  listName: selectListName(ownProps.params.listID)(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  addTodo: (text, listID) => {
+    dispatch(actions.submitEntity({ text }, { type: 'todos', parentType: 'lists', parentId: listID }));
+  },
+});
 
 export default connect(
-  state => ({
-    todos: getEntities('todos')(state)
-  }),
-  dispatch => ({
-    addTodo: (text) => dispatch(actions.submitEntity({ text }, {type: 'todos'})),
-    toggleTodo: (todo, completed) => dispatch(actions.updateEntity({ ...todo, completed }, {type: 'todos'}))
-  })
-)(Todos)
+  mapStateToProps,
+  mapDispatchToProps
+)(Todos);
