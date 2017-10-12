@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import todos from './todos'
-import lists from './lists'
+import todos from 'App/screens/Todos/stores'
+import lists from 'App/screens/Lists/stores'
 
 export default combineReducers({
   todos,

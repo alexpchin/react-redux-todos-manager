@@ -1,10 +1,11 @@
 import React from 'react'; import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+
 import * as actions from 'App/stores/resources/actions'
-import { selectListName } from 'App/stores/lists'
-import AddTodo from './containers/AddTodo'
+import { selectListName } from 'App/screens/Lists/stores'
+import AddTodo from './components/AddTodo'
 import Footer from './components/Footer'
-import VisibleTodoList from './containers/VisibleTodoList'
+import VisibleTodoList from './components/VisibleTodoList'
 
 const Todos = ({ todos, addTodo, listName, params: { listID } }) => (
   <section className='pa3 pa5-ns'>

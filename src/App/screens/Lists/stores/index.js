@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import createResource, * as fromResource from '../resources'
+import createResource, * as fromResource from 'App/stores/resources'
 
 const lists = createResource('lists')
 

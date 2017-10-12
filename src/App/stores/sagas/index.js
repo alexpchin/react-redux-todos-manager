@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects'
 
-import watchTodos from '../todos/sagas'
-import watchLists from '../lists/sagas'
+import watchTodos from 'App/screens/Todos/stores/sagas'
+import watchLists from 'App/screens/Lists/stores/sagas'
 
 export default function * sagas () {
   yield [

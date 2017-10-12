@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {selectLists} from 'App/stores/lists'
+
+import { selectLists } from './stores'
 import * as actions from 'App/stores/resources/actions'
-import Lists from './containers/Lists'
-import AddList from './containers/AddList'
+import Lists from './components/Lists'
+import AddList from './components/AddList'
 
 class Home extends Component { // eslint-disable-line react/prefer-stateless-function
   render () {

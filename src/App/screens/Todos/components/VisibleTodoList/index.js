@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { makeSelectVisibleTodos } from 'App/stores/lists'
+
+import { makeSelectVisibleTodos } from 'App/screens/Lists/stores'
 import * as actions from 'App/stores/resources/actions'
-import TodoList from '../../components/TodoList'
+import TodoList from '../TodoList'
 
 class VisibleTodoList extends Component {
   componentDidMount () {
