@@ -1,37 +1,36 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { makeSelectVisibleTodos, selectVisibleTodos } from 'App/stores/lists';
-import * as actions from 'App/stores/resources/actions';
-import TodoList from '../../components/TodoList';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { makeSelectVisibleTodos } from 'App/stores/lists'
+import * as actions from 'App/stores/resources/actions'
+import TodoList from '../../components/TodoList'
 
 class VisibleTodoList extends Component {
-
-  componentDidMount() {
-    this.fetchData();
+  componentDidMount () {
+    this.fetchData()
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     if (this.props.filter !== prevProps.filter || this.props.params.listID !== prevProps.params.listID) {
-      this.fetchData();
+      this.fetchData()
     }
   }
 
-  fetchData() {
-    const { fetchTodos, params: { listID } } = this.props;
-    fetchTodos(listID);
+  fetchData () {
+    const { fetchTodos, params: { listID } } = this.props
+    fetchTodos(listID)
   }
 
-  render() {
-    console.log('Rendering VisibleTodoList');
-    const { toggleTodo, todos } = this.props;
+  render () {
+    console.log('Rendering VisibleTodoList')
+    const { toggleTodo, todos } = this.props
 
     return (
       <TodoList
         todos={todos}
         toggleTodo={toggleTodo}
       />
-    );
+    )
   }
 }
 
@@ -40,8 +39,8 @@ VisibleTodoList.propTypes = {
   todos: PropTypes.array.isRequired,
   fetchTodos: PropTypes.func.isRequired,
   toggleTodo: PropTypes.func.isRequired,
-  params: PropTypes.any,
-};
+  params: PropTypes.any
+}
 
 // const mapStateToProps = (state, { params }) => {
 //   const filter = params.filter || 'all';
@@ -53,26 +52,25 @@ VisibleTodoList.propTypes = {
 // };
 
 const makeMapStateToProps = () => {
-  const getVisibleTodos = makeSelectVisibleTodos();
+  const getVisibleTodos = makeSelectVisibleTodos()
   const mapStateToProps = (state, props) => {
-    const filter = props.params.filter || 'all';
+    const filter = props.params.filter || 'all'
     return {
       todos: getVisibleTodos(state, props),
       filter,
-      listID: props.params.listID || '',
-    };
-  };
-  return mapStateToProps;
-};
-
+      listID: props.params.listID || ''
+    }
+  }
+  return mapStateToProps
+}
 
 const mapDispatchToProps = dispatch => ({
   toggleTodo: (todo, completed) => dispatch(actions.updateEntity({ ...todo, completed }, { type: 'todos' })),
-  fetchTodos: listID => dispatch(actions.fetchEntity({}, { type: 'lists', listID })),
-});
+  fetchTodos: listID => dispatch(actions.fetchEntity({}, { type: 'lists', listID }))
+})
 
 export default withRouter(connect(
   // mapStateToProps,
   makeMapStateToProps,
   mapDispatchToProps
-)(VisibleTodoList));
+)(VisibleTodoList))

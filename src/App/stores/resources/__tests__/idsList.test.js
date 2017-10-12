@@ -3,12 +3,10 @@
 // some generic reducers that can be used with any entity
 
 import makeIdsListReducer, { defaultState, getIds } from '../idsList'
+import * as actions from '../actions'
 
 const type = 'models'
 const reducer = makeIdsListReducer(type)
-
-import * as actions from '../actions'
-import * as types from '../actions/constants'
 
 describe('idsList reducer', () => {
   it('should initialize default state', () => {
@@ -100,7 +98,6 @@ describe('idsList reducer', () => {
     expect(actual).toEqual(expected)
   })
 })
-
 
 describe('byId reducer when type doesn\'t match', () => {
   const state = [321]

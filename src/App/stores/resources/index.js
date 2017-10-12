@@ -6,26 +6,26 @@
   fetched from the API.
  */
 
-import { combineReducers } from 'redux';
-import { createSelector } from 'reselect';
+import { combineReducers } from 'redux'
+import { createSelector } from 'reselect'
 
-import byId, * as fromById from './byId';
-import idsList, * as fromIdsList from './idsList';
-import status, * as fromStatus from './status';
-import pagination, * as fromPagination from './pagination';
+import byId, * as fromById from './byId'
+import idsList, * as fromIdsList from './idsList'
+import status, * as fromStatus from './status'
+import pagination, * as fromPagination from './pagination'
 
 export default type => combineReducers({
   byId: byId(type),
   idsList: idsList(type),
   status: status(type),
-  pagination: pagination(type),
-});
+  pagination: pagination(type)
+})
 
 // Get one item in a state of this reducer
 export const getEntity = (type, id) => createSelector(
   state => fromById.getEntity(state[type].byId, id),
-  (entity) => { if (entity) return entity; }
-);
+  (entity) => { if (entity) return entity }
+)
 
 // Get all items in a state of this reducer
 export const getEntities = type => createSelector(
@@ -33,10 +33,10 @@ export const getEntities = type => createSelector(
   state => fromIdsList.getIds(state[type].idsList),
   (state, entitiesIds) => {
     if (entitiesIds) {
-      return entitiesIds.map(id => fromById.getEntity(state[type].byId, id));
+      return entitiesIds.map(id => fromById.getEntity(state[type].byId, id))
     }
   }
-);
+)
 
 // Get child entities by its parent ID
 export const getChildEntities = (childType, parentType, parentId) => createSelector(
@@ -44,13 +44,13 @@ export const getChildEntities = (childType, parentType, parentId) => createSelec
   state => fromById.getEntity(state[parentType].byId, parentId),
   (state, parent) => {
     if (parent && parent[childType]) {
-      return parent[childType].map(id => fromById.getEntity(state[childType].byId, id));
+      return parent[childType].map(id => fromById.getEntity(state[childType].byId, id))
     }
   }
-);
+)
 
-export const isLoading = (state, type) => fromStatus.isLoading(state[type].status);
+export const isLoading = (state, type) => fromStatus.isLoading(state[type].status)
 
-export const getErrors = (state, type) => fromStatus.getErrors(state[type].status);
+export const getErrors = (state, type) => fromStatus.getErrors(state[type].status)
 
-export const getPagination = (state, type) => fromPagination.getPagination(state[type].pagination);
+export const getPagination = (state, type) => fromPagination.getPagination(state[type].pagination)

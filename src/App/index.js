@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const App = ({ children }) => (
   <div>
     {children}
   </div>
-);
+)
 
 App.propTypes = {
-  children: PropTypes.node,
-};
+  children: PropTypes.node
+}
 
-export default App;
+export default App

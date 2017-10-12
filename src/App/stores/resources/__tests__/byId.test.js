@@ -3,12 +3,10 @@
 // some generic reducers that can be used with any entity
 
 import makeByIdReducer, { defaultState, getEntity } from '../byId'
+import * as actions from '../actions'
 
 const type = 'models'
 const reducer = makeByIdReducer(type)
-
-import * as actions from '../actions'
-import * as types from '../actions/constants'
 
 describe('byId reducer', () => {
   it('should initialize default state', () => {

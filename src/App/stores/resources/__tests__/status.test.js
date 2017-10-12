@@ -3,12 +3,10 @@
 // some generic reducers that can be used with any entity
 
 import makeStatusReducer, { defaultState, isLoading, getErrors } from '../status'
+import * as actions from '../actions'
 
 const type = 'models'
 const reducer = makeStatusReducer(type)
-
-import * as actions from '../actions'
-import * as types from '../actions/constants'
 
 describe('status reducer', () => {
   it('should initialize default state', () => {

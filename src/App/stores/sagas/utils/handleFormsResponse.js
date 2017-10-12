@@ -6,7 +6,7 @@ import isPlainObject from 'lodash/isPlainObject'
 
 import { stopSubmit, SubmissionError } from 'redux-form'
 
-export default function* handleFormResponse ({
+export default function * handleFormResponse ({
   form,
   resolveFn,
   rejectFn,

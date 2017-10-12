@@ -1,5 +1,5 @@
-import createResource from '../resources';
+import createResource from '../resources'
 
-const todos = createResource('todos');
+const todos = createResource('todos')
 
-export default todos;
+export default todos

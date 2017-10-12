@@ -3,12 +3,10 @@
 // some generic reducers that can be used with any entity
 
 import makePaginationReducer, { defaultState, getCurrentPage, getPagination } from '../pagination'
+import * as actions from '../actions'
 
 const type = 'models'
 const reducer = makePaginationReducer(type)
-
-import * as actions from '../actions'
-import * as types from '../actions/constants'
 
 describe('pagination reducer', () => {
   it('should initialize default state', () => {
